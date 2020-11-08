@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapeshop|Home</title>
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>ScrapeShop</h1>
+        <!-- <img src="../static/logo.png" alt="ScrapeShop" class="logo"> -->
+        {% if message %}
+        <p class="message">{{ message | safe }}</p>
+        {% endif %}
+
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <h2>Insert URL of the product here</h2>
+                <!-- URL to be parsed wrt shopping website
+                     company finder function in app.py-->
+                <input type="url" id="product-url" name="product">
+                <br>
+                <h2>Expected Flash Sale Price</h2>
+                
+                <input type="number" id="price" name="price"> 
+                <br>
+                <h2>Your Email</h2>
+                <label for="email"></label>
+                <input type="email" id="email" name="email">
+            </div>
+            <br>
+            <button class="btn">Notify Me!</button>
+        </form>
+    </div>
+   
+</body>
+</html>
