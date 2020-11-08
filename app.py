@@ -7,7 +7,7 @@ import threading
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 curr_price = int()
 
 if ENV == 'dev':
