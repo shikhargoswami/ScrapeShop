@@ -42,9 +42,9 @@ class User():
                 price = soup.find(id="priceblock_dealprice")
 
                 if price != None:
-                    price = int(price.get_text()[1:].replace(',', ""))
+                    price = int(price.get_text()[1:].split('.')[0].replace(',', ""))
                 if price == None:
-                    price = int(soup.find("span", attrs={"id":"priceblock_ourprice"}).get_text()[1:].replace(',', ""))
+                    price = int(soup.find("span", attrs={"id":"priceblock_ourprice"}).get_text()[1:].split('.')[0].replace(',', ""))
 
             if price <= self.price:
                 self.send_mail()
@@ -81,9 +81,9 @@ class User():
                     price = soup.find(id="priceblock_dealprice")
 
                     if price != None:
-                        price = int(price.get_text()[1:].replace(',', ""))
+                        price = int(price.get_text()[1:].split('.')[0].replace(',', ""))
                     if price == None:
-                        price = int(soup.find("span", attrs={"id":"priceblock_ourprice"}).get_text()[1:].replace(',', ""))
+                        price = int(soup.find("span", attrs={"id":"priceblock_ourprice"}).get_text()[1:].split('.')[0].replace(',', ""))
 
                 
                 if price <= self.price:
