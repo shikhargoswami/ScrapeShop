@@ -21,8 +21,8 @@ class User():
                 self.url = str(self.url)
                 website = self.url.split("//")[-1].split('/')[0].split('.')[1]
                 # Some websites need to have user-agents to show results
-                HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
-                page = requests.get(self.url, headers=HEADERS)
+                #HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
+                page = requests.get(self.url)
                 soup = BeautifulSoup(page.content, 'html.parser')
             
             except:
@@ -60,8 +60,8 @@ class User():
                     self.url = str(self.url)
                     website = self.url.split("//")[-1].split('/')[0].split('.')[1]
                     # Some websites need to have user-agents to show results
-                    HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
-                    page = requests.get(self.url, headers=HEADERS)
+                    #HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
+                    page = requests.get(self.url)
                     soup = BeautifulSoup(page.content, 'html.parser')
                 
                 except:
