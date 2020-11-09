@@ -12,5 +12,3 @@ Real time Web Scraping from shopping websites, tracking product price and notify
 * Heroku - Deployment(CI/CD)
 
 
-## Checkout the website!
-![ScrapeShop](https://scrapeshop.herokuapp.com/)
