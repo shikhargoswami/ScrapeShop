@@ -21,6 +21,8 @@ body {
 h1 {
 	color: #777;
 	margin-top: 15px;
+	text-align: center;
+	padding-left: 10px;
 }
 
 h2 {

@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from scrape import scrape
-from mail import send_mail
+from scrape import User
 import time
 import threading
 
 app = Flask(__name__)
 
-ENV = 'prod'
-curr_price = int()
+ENV = 'dev'
+
+users = []
+i = 0
 
 if ENV == 'dev':
     app.debug = True
@@ -48,6 +49,7 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
+    global i 
     if request.method == 'POST':
         url = request.form['product']
         price = request.form['price']
@@ -57,28 +59,19 @@ def submit():
         if url == '' or email=='':
             return render_template('index.html', message='Please enter a valid URl or email')
 
-        print(url)
-        if db.session.query(Database).filter(Database.email==email).count() ==0:
+        
+        if db.session.query(Database).filter(Database.email==email, Database.product_url==url).count() ==0:
             
-            #event = threading.Event()
-            #while(True):
-            scraped_name, scraped_price = scrape(url)
-            print(scraped_name, scraped_price)
-            #event.wait(60*60*60*5)
-
-            if (scraped_price) <= int(price):
-                send_mail(email, url)
-                #continue
-            #else:
-                #send_mail(email, url)
-                #break
-            
+            users.append(User(email, url, price))
+            scraped_name, scraped_price = users[i].scrape()
+            i = i+1
             data = Database(url, scraped_name, scraped_price, price, email)
             db.session.add(data)
             db.session.commit()
             
             return render_template('success.html', message='We will notify you when the price drops!', 
-                                    email = email, product_name=scraped_name, current_price=scraped_price)
+                                    email = email, product_name=scraped_name, current_price=scraped_price
+                                    , expected_price=price)
 
         
         return render_template('index.html', message='You have already asked us to notify for this product')

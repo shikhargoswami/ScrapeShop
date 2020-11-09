@@ -10,11 +10,13 @@
     <div class="container">
         <!-- <img src="../static/logo.png" alt="ScrapeShop" class="logo" /> -->
         <h1>Thank You!</h1>
-        {% if message && email && product_name && product_price %}
-        <h2 class="message">{{ message | safe }}</h2>
-        <p class="email">{{email}}</p>
-        <p class="product_title">{{product_name}}</p>
-        <p class="product_price">{{product_price}}</p>
+        {% if message %}
+        <p class="message">{{ message | safe }}</p>
+        <br>
+        <p class="email"><b>Your Mail:</b> {{email}}</p>
+        <p class="product_title"><b>Your Product:</b> {{product_name}}</p>
+        <p class="product_price"><b>Current price:</b> {{current_price}}</p>
+        <p class="Expected_price"><b>Price You want:</b> {{expected_price}}</p>
         {% endif %}
 </body>
 </html>
