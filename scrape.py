@@ -92,7 +92,8 @@ class User():
                     break
                 
             if flag==2:
-                return
+                return flag
+            
                 time.sleep(60*60*60*4)
 
 
