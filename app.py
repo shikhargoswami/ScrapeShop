@@ -6,7 +6,7 @@ import threading
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 users = []
 i = 0
@@ -63,7 +63,7 @@ def submit():
         if db.session.query(Database).filter(Database.email==email, Database.product_url==url).count() ==0:
             
             users.append(User(email, url, price))
-            scraped_name, scraped_price = users[i].scrape()
+            scraped_name, scraped_price, flag= users[i].scrape()
             i = i+1
             data = Database(url, scraped_name, scraped_price, price, email)
             db.session.add(data)
