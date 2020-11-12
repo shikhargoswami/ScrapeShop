@@ -3,6 +3,10 @@ from bs4 import BeautifulSoup
 import threading
 import time
 import smtplib
+import os
+from dotenv import load_dotenv
+
+load_dotenv(".env")
 
 class User():
 
@@ -20,8 +24,6 @@ class User():
             try:
                 self.url = str(self.url)
                 website = self.url.split("//")[-1].split('/')[0].split('.')[1]
-                # Some websites need to have user-agents to show results
-                #HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
                 page = requests.get(self.url)
                 soup = BeautifulSoup(page.content, 'html.parser')
             
@@ -59,8 +61,6 @@ class User():
                 try:
                     self.url = str(self.url)
                     website = self.url.split("//")[-1].split('/')[0].split('.')[1]
-                    # Some websites need to have user-agents to show results
-                    #HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:82.0) Gecko/20100101 Firefox/82.0"}
                     page = requests.get(self.url)
                     soup = BeautifulSoup(page.content, 'html.parser')
                 
@@ -127,7 +127,7 @@ class User():
             server.starttls()
             server.ehlo()
 
-            server.login('goshigo23@gmail.com', 'bdryaouqjwrdoape')
+            server.login(os.getenv(EMAIL), os.getenv(CRED_EMAIL))
         except:
             print('Error!!!!')
 
@@ -136,7 +136,7 @@ class User():
 
         msg = f"Subject: {subject}\n\n{body}"
 
-        server.sendmail('goshigo23@gmail.com', self.email, msg)
+        server.sendmail(os.getenv(EMAIL), self.email, msg)
         print('Email has been sent')
         server.quit()
 
