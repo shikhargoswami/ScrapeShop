@@ -1,4 +1,4 @@
 .vscode
 __pycache__
 venv
-scrape2.py
+app.py
