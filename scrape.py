@@ -34,8 +34,8 @@ class User():
 
             if website == 'flipkart':
 
-                title = soup.find("span", attrs={"class": "_35KyD6"}).get_text().strip()
-                price = int(soup.find("div", attrs={"class":"_1vC4OE _3qQ9m1"}).get_text()[1:].replace(',', ""))
+                title = soup.find("span", attrs={"class": "B_NuCI"}).get_text().strip()
+                price = int(soup.find("div", attrs={"class":"_30jeq3 _16Jk6d"}).get_text()[1:].replace(',', ""))
 
         
             elif website == 'amazon':
